@@ -143,53 +143,70 @@ body::before {
 }
 
 /* --- Image Sizing & Containment --- */
+
+/* Global baseline — prevents any image ever breaking out of its container */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Hero / intro portrait */
-.intro-image img {
+/* Top-bar logo (Brahmavidya watermark beside tagline) */
+.top-bar-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Hero — main title logo (satarasa eng.png) */
+.hero-logo-main {
+  max-width: 480px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto var(--space-sm);
+  object-fit: contain;
+}
+
+/* Hero — rasa100 logo (rasa 100 logo.png) */
+.hero-logo-rasa100 {
+  max-width: 180px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto var(--space-sm);
+  object-fit: contain;
+}
+
+/* Intro section — portrait of Dr. R. Sathyanarayana */
+.portrait-img {
   max-width: 350px;
   width: 100%;
   height: auto;
   margin: 0 auto;
   border: 2px solid var(--color-ochre);
   object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 
-/* Logo images (nav + footer) */
-.nav-logo img,
-.footer-logo img {
-  max-height: 48px;
-  width: auto;
-  object-fit: contain;
-}
-
-/* Kannada logo in the centenary band */
-.kannada-logo img,
-.ornament-band img {
-  max-width: 220px;
+/* Satarasa Kannada logo */
+.satarasa-kan-logo {
+  max-width: 260px;
   width: 100%;
   height: auto;
   margin: 0 auto;
   object-fit: contain;
 }
 
-/* Programme / event card images */
+/* Programme / event card images (if real images replace placeholders later) */
 .card img {
   width: 100%;
   max-height: 260px;
   object-fit: cover;
   object-position: center top;
   margin-bottom: var(--space-md);
-}
-
-/* General in-content images */
-main img:not(.nav-logo img):not(.footer-logo img) {
-  max-width: 100%;
-  height: auto;
 }
 
 /* --- Typography --- */
@@ -250,6 +267,15 @@ a:hover {
 .smallcaps {
   font-family: var(--font-smallcaps);
   letter-spacing: 0.05em;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 /* --- Decorative Elements --- */
@@ -319,18 +345,30 @@ a:hover {
   transform: translateX(-50%);
 }
 
-/* --- Navigation --- */
-.top-bar {
+/* --- Top Bar --- */
+.top-bar-wrapper {
   background: var(--color-deep-earth);
-  color: var(--color-cream);
-  text-align: center;
+  position: relative;
+  z-index: 1001;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
   padding: var(--space-xs) var(--space-md);
+}
+
+.top-bar-text {
   font-family: var(--font-accent);
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  color: var(--color-cream);
 }
 
+/* --- Navigation --- */
 nav {
   background: linear-gradient(
     180deg,
@@ -481,6 +519,7 @@ nav {
   position: relative;
   z-index: 1;
   max-width: 800px;
+  width: 100%;
 }
 
 .hero .shloka {
@@ -493,24 +532,26 @@ nav {
   line-height: 1.8;
 }
 
+/* h1 in hero acts as logo container — reset visual heading styles */
 .hero h1 {
-  font-family: var(--font-heading);
-  font-size: 3.5rem;
-  color: var(--color-gold);
-  font-weight: 300;
-  letter-spacing: 0.08em;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  text-shadow: none;
   margin-bottom: var(--space-sm);
-  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
 }
 
 .hero h1 .highlight {
   display: block;
+  font-family: var(--font-smallcaps);
   font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 0.15em;
   color: var(--color-cream);
-  margin-top: var(--space-sm);
-  font-family: var(--font-smallcaps);
   text-transform: lowercase;
 }
 
@@ -632,6 +673,16 @@ main {
   font-family: var(--font-accent);
 }
 
+/* Sanskrit label used directly in sections (not inside .section-header) */
+.section-sanskrit {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-sienna);
+  font-size: 1rem;
+  margin-bottom: var(--space-xs);
+  text-align: center;
+}
+
 /* --- Card Styles --- */
 .card {
   background: var(--color-light-parchment);
@@ -686,6 +737,12 @@ main {
   color: var(--color-sienna);
   font-family: var(--font-smallcaps);
   letter-spacing: 0.1em;
+}
+
+/* --- Satarasa Kannada logo section spacing --- */
+.satarasa-kan-section {
+  padding-top: 0;
+  padding-bottom: var(--space-xl);
 }
 
 /* --- Timeline --- */
@@ -1389,7 +1446,15 @@ footer {
   }
 
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: inherit;
+  }
+
+  .hero-logo-main {
+    max-width: 340px;
+  }
+
+  .hero-logo-rasa100 {
+    max-width: 140px;
   }
 
   .nav-links {
@@ -1461,8 +1526,20 @@ footer {
     padding: var(--space-xl) var(--space-md);
   }
 
-  .hero h1 {
-    font-size: 2rem;
+  .hero-logo-main {
+    max-width: 260px;
+  }
+
+  .hero-logo-rasa100 {
+    max-width: 110px;
+  }
+
+  .portrait-img {
+    max-width: 280px;
+  }
+
+  .satarasa-kan-logo {
+    max-width: 200px;
   }
 
   .container,
@@ -1539,7 +1616,7 @@ footer {
 
 /* --- Print Styles --- */
 @media print {
-  nav, .hamburger, .top-bar, footer {
+  nav, .hamburger, .top-bar-wrapper, footer {
     display: none;
   }
 
