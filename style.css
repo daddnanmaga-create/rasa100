@@ -273,12 +273,31 @@ a:hover {
 .top-bar {
   background: var(--color-deep-earth);
   color: var(--color-cream);
-  text-align: center;
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-xs) var(--space-lg);
   font-family: var(--font-accent);
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.top-bar-wrapper {
+  background: var(--color-deep-earth);
+}
+
+.top-bar-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+.top-bar-text {
+  flex: 1;
+  text-align: center;
 }
 
 nav {
@@ -1380,6 +1399,14 @@ footer {
     flex-direction: column;
     gap: var(--space-xs);
   }
+
+  .top-bar-logo {
+    height: 28px;
+  }
+
+  .top-bar-text {
+    font-size: 0.65rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1428,6 +1455,19 @@ footer {
     letter-spacing: 0.05em;
     display: block;
     margin-bottom: 2px;
+  }
+
+  .top-bar {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .top-bar-logo {
+    height: 24px;
+  }
+
+  .top-bar-text {
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
   }
 }
 
