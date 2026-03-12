@@ -1237,6 +1237,12 @@ footer {
   margin: 0 auto;
 }
 
+.portrait-img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
 /* Square variant */
 .img-placeholder--square {
   aspect-ratio: 1 / 1;
