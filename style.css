@@ -1,12 +1,7 @@
-/* --- Published Pages Card with Background Image --- */
-.highlight-item--published-pages {
-  background-image: 
-    linear-gradient(
-      rgba(253, 248, 238, 0.85),
-      rgba(253, 248, 238, 0.85)
-    ),
-    url('RS writing desk_20260312_103431_0000.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.some-css-class {
+    color: blue;
+}
+
+.some-other-class {
+    margin: 0;
 }
